@@ -47,7 +47,7 @@ resource "aws_subnet" "geo-subnet-public2" {
 
 #aws_internet_gateway
 resource "aws_internet_gateway" "geo-igw" {
-vpc_id = "var.vpc-geo.id"
+vpc_id = var.vpc-geo
 
   tags = {
     Name = "${var.env_prefix}-igw"
@@ -56,7 +56,7 @@ vpc_id = "var.vpc-geo.id"
 
 
 resource "aws_default_route_table" "d-route-1" {
-  default_route_table_id =  "var.vpc-geo.id"
+  default_route_table_id =  var.vpc-geo
 
   route {
     cidr_block = "0.0.0.0/0" 
