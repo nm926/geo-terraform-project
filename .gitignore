@@ -1,0 +1,19 @@
+
+#state ignore
+*.tfstate
+*.tfstate.*
+
+
+#.terraform ignore
+
+.terraform
+
+
+# ignore vpc .terraform
+modules/*/.terraform
+
+
+
+
+
+
