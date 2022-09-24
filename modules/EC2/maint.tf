@@ -23,7 +23,7 @@ resource "aws_key_pair" "deployer" {
 
 }
 
-########## Create T2 instancne #####################
+########## Create T3 instancne #####################
 resource "aws_instance" "ami-instance" {
   ami           = "data.aws_ami.latest-amazon-linux-image"
   instance_type = var.instance_type

@@ -1,4 +1,4 @@
-variable vpc-geo{}
+variable vpc-geo_id{}
 variable private_subnets{}
 variable avail_zone{}
 variable my-ip{}

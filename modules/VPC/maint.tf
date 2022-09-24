@@ -1,8 +1,8 @@
 
 #create geo-subnet-private
-resource "aws_subnet" "geo-subnet-private1" {
-  vpc_id = var.vpc-geo
-  cidr_block = var.private_subnets[0]
+resource "aws_subnet" "private1" {
+   vpc_id = var.vpc-geo_id
+   cidr_block = var.private_subnets[0]
   
    tags = {
     Name ="${var.env_prefix}-private"
@@ -11,8 +11,8 @@ resource "aws_subnet" "geo-subnet-private1" {
 
 
 #create geo-subnet-private
-resource "aws_subnet" "geo-subnet-private2" {
-  vpc_id = var.vpc-geo
+resource "aws_subnet" "private2" {
+  vpc_id = var.vpc-geo_id
   cidr_block = var.private_subnets[1]
    tags = {
     Name ="${var.env_prefix}-private1"
@@ -21,8 +21,9 @@ resource "aws_subnet" "geo-subnet-private2" {
 
 
 #create geo-subnet-public
-resource "aws_subnet" "geo-subnet-public1" {
-  vpc_id = var.vpc-geo
+resource "aws_subnet" "public1" {
+
+  vpc_id = var.vpc-geo_id
   cidr_block = var.public_subnets[0]
   
    tags = {
@@ -32,8 +33,8 @@ resource "aws_subnet" "geo-subnet-public1" {
 
 
 #create geo-subnet-public
-resource "aws_subnet" "geo-subnet-public2" {
-  vpc_id = var.vpc-geo
+resource "aws_subnet" "public2" {
+  vpc_id = var.vpc-geo_id
   cidr_block = var.public_subnets[1]
    tags = {
     Name ="${var.env_prefix}-public1"
@@ -46,8 +47,8 @@ resource "aws_subnet" "geo-subnet-public2" {
 
 
 #aws_internet_gateway
-resource "aws_internet_gateway" "geo-igw" {
-vpc_id = var.vpc-geo
+resource "aws_internet_gateway" "geo-igw" {  
+vpc_id = var.vpc-geo_id
 
   tags = {
     Name = "${var.env_prefix}-igw"
@@ -56,7 +57,7 @@ vpc_id = var.vpc-geo
 
 
 resource "aws_default_route_table" "d-route-1" {
-  default_route_table_id =  var.vpc-geo
+  default_route_table_id =  var.vpc-geo_id
 
   route {
     cidr_block = "0.0.0.0/0" 

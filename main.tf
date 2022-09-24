@@ -1,9 +1,7 @@
 
 provider "aws" {
-
 }  
 
-# create VPC
 resource "aws_vpc" "vpc-geo" {
   cidr_block = var.vpc-geo
   tags = {
@@ -12,9 +10,9 @@ resource "aws_vpc" "vpc-geo" {
 }
 
 
-module geo-vpc {
+module geo-VPC {
 source = "./modules/VPC"
-vpc-geo = var.vpc-geo 
+vpc-geo_id = aws_vpc.vpc-geo.id
 private_subnets = var.private_subnets
 public_subnets = var.public_subnets
 env_prefix = var.env_prefix
@@ -24,7 +22,7 @@ my-ip = var.my-ip
 
 module geo-EC2 {
 source =  "./modules/EC2"  
-vpc-geo = var.vpc-geo
+vpc-geo_id = aws_vpc.vpc-geo.id
 private_subnets = var.private_subnets
 avail_zone = var.avail_zone
 instance_type = var.instance_type
@@ -40,7 +38,7 @@ env_prefix = var.env_prefix
 module geo-Route53 {
 source =  "./modules/Route53"  
 env_prefix = var.env_prefix
-vpc-geo = var.vpc-geo
+vpc-geo_id = aws_vpc.vpc-geo.id
 private_subnets = var.private_subnets
 Route53-geo = var.Route53-geo
 Route53-instance-geo = var.Route53-instance-geo
